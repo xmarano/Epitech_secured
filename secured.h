@@ -5,6 +5,7 @@
 ** secured : secured.h
 */
 #include "my.h"
+#include "hashtable.h"
 #ifndef SECURED_H
     #define SECURED_H
 
