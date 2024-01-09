@@ -19,7 +19,7 @@ SRCLIB	=	lib/my_atoi.c 		\
 SRCNAME	=	main.c	\
 
 
-LIB = 	libmy.a
+LIB = 	libhashtable.a
 
 OBJLIB	=	$(SRCLIB:.c=.o)
 OBJNAME	=	$(SRCNAME:.c=.o)
@@ -30,13 +30,13 @@ $(NAME) : $(LIB) $(OBJNAME)
 	gcc -o $(NAME) $(OBJNAME) -lmy -L./ -g3
 
 $(LIB) : $(OBJLIB)
-	ar rc libmy.a lib/*.o
+	ar rc libhashtable.a lib/*.o
 
 
 all:	$(LIB) $(NAME)
 
 clean:
-	rm -f $(OBJLIB) $(OBJNAME) libmy.a
+	rm -f $(OBJLIB) $(OBJNAME) libhashtable.a
 
 fclean: clean
 	rm -f $(NAME)
