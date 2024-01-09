@@ -6,7 +6,7 @@
 */
 #include "secured.h"
 
-int hash(char *key)
+int hash(char *key, int len)
 {
     int res = 1;
 
@@ -17,14 +17,41 @@ int hash(char *key)
     }
     if (res < 0)
         res = res * -1;
-    return res;
+    return res % len;
 }
 
-int main(int argc, char **argv)
+hashtable_t *new_hashtable(int (*hash)(char *, int), int len)
 {
-    my_printf("Directory : %d\n", hash("/Documents/Modules/Vision"));
-    my_printf("Perception : %d\n", hash("Perception"));
-    my_printf("Fight : %d\n", hash("Fight"));
-    my_printf("Pathfinding : %d\n", hash("Pathfinding"));
+    hashtable_t *ht = malloc(sizeof(hashtable_t));
+
+    ht->len = len;
+    ht->hash = hash;
+    return ht;
+}
+
+void delete_hashtable(hashtable_t *ht)
+{
+    free(ht);
+}
+
+int main(void)
+{
+    hashtable_t *ht = new_hashtable(&hash, 20);
+    int i = 0;
+
+    ht->arr = malloc(20 * sizeof(char *));
+    while (i != 20) {
+        ht->arr[i] = "ouais";
+        i++;
+    }
+    ht->arr[i] = NULL;
+    if (ht != NULL) {
+        my_printf("hashtable created\n");
+        my_printf("length: %d\n", ht->len);
+    } else {
+        write(2, "failed\n", 8);
+        return 84;
+    }
+    delete_hashtable(ht);
     return 0;
 }
