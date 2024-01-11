@@ -8,13 +8,9 @@
 SRCLIB	=	lib/my_atoi.c 		\
 			lib/my_putstr.c 	\
 			lib/my_printf.c		\
-			lib/my_strcmp.c 	\
-			lib/my_strlen.c 	\
-			lib/my_strcpy.c 	\
 			lib/my_putchar.c	\
 			lib/my_put_nbr.c 	\
 			lib/my_put_nbr_recursive.c	\
-			lib/my_strdup.c		\
 
 SRCNAME	=	main.c	\
 
@@ -27,7 +23,7 @@ OBJNAME	=	$(SRCNAME:.c=.o)
 NAME	=	a.out
 
 $(NAME) : $(LIB) $(OBJNAME)
-	gcc -o $(NAME) $(OBJNAME) -lmy -L./ -g3
+	gcc -o $(NAME) $(OBJNAME) -lhashtable -L./ -g3
 
 $(LIB) : $(OBJLIB)
 	ar rc libhashtable.a lib/*.o

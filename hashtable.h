@@ -8,10 +8,15 @@
 #ifndef HASHTABLE_H
     #define HASHTABLE_H
 
-typedef struct hashtable_s {
-    char **arr;
+typedef struct node {
+    int hashed;
+    char *value;
+    struct node *next;
+} node_t;
+
+typedef struct {
     int len;
-    int (*hash)(char *, int);
+    node_t **tab_list;
 } hashtable_t;
 
 // Hash function

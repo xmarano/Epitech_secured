@@ -8,15 +8,4 @@
 #include "hashtable.h"
 #ifndef SECURED_H
     #define SECURED_H
-
-struct node {
-    int id;
-    char *type;
-    char *name;
-    struct node *next;
-};
-struct secured {
-    struct node *head;
-};
-
 #endif
