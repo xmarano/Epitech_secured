@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** B-CPE-110-MAR-1-1-secured-leo.gregori
 ** File description:
-** main.c
+** secured.c
 */
 #include "secured.h"
 

@@ -1,41 +1,35 @@
 ##
 ## EPITECH PROJECT, 2023
-## secured
+## B-CPE-110-MAR-1-1-secured-leo.gregori
 ## File description:
-## Infos
+## main.c
 ##
 
-SRCLIB	=	lib/my_atoi.c 		\
+SRC		=	lib/my_atoi.c 		\
 			lib/my_putstr.c 	\
 			lib/my_printf.c		\
 			lib/my_putchar.c	\
 			lib/my_put_nbr.c 	\
 			lib/my_put_nbr_recursive.c	\
+			secured.c 			\
 
-SRCNAME	=	main.c	\
-			secured.c \
+OBJ		=	$(SRC:.c=.o)
 
+LIB		=	ar rc libhashtable.a $(OBJ)
 
-LIB = 	libhashtable.a
+NAME	=	gcc main.c -L. -lhashtable
 
-OBJLIB	=	$(SRCLIB:.c=.o)
-OBJNAME	=	$(SRCNAME:.c=.o)
+all		:	$(OBJ)
+			$(LIB)
 
-NAME	=	a.out
+exe		:
+			$(NAME)
 
-$(NAME) : $(LIB) $(OBJNAME)
-	gcc -o $(NAME) $(OBJNAME) -lhashtable -L./ -g3
+clean 	:
+			rm $(OBJ)
 
-$(LIB) : $(OBJLIB)
-	ar rc libhashtable.a lib/*.o
+fclean 	:	clean
+			rm -f libhashtable.a
+			rm -f a.out
 
-
-all:	$(LIB) $(NAME)
-
-clean:
-	rm -f $(OBJLIB) $(OBJNAME) libhashtable.a
-
-fclean: clean
-	rm -f $(NAME)
-
-re: 	fclean all
+re		:	fclean all exe
