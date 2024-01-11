@@ -59,10 +59,9 @@ void ht_dump(hashtable_t *ht)
         my_printf("[%d]:\n", i);
         current = ht->tab_list[i];
         while (current != NULL) {
-            my_printf("> %d - %s ", current->hashed, current->value);
+            my_printf("> %d - %s \n", current->hashed, current->value);
             current = current->next;
         }
-        my_printf("\n");
     }
 }
 

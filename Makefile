@@ -13,6 +13,7 @@ SRCLIB	=	lib/my_atoi.c 		\
 			lib/my_put_nbr_recursive.c	\
 
 SRCNAME	=	main.c	\
+			secured.c \
 
 
 LIB = 	libhashtable.a
