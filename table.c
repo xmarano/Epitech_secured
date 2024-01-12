@@ -5,6 +5,7 @@
 ** table.c
 */
 #include "secured.h"
+#include "my.h"
 
 int hash(char *key, int len)
 {

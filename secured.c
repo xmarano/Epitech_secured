@@ -13,7 +13,7 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     node_t *current = NULL;
 
     new->hashed = hash(key, ht->len);
-    new->value = strdup(value);
+    new->value = my_strdup(value);
     new->next = NULL;
     if (ht->tab_list[index] == NULL) {
         ht->tab_list[index] = new;
@@ -25,6 +25,17 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     }
     return 0;
 }
+
+int ht_delete(hashtable_t *ht, char *key)
+{
+    return 0;
+}
+
+char *ht_search(hashtable_t *ht, char *key)
+{
+    return NULL;
+}
+
 
 void ht_dump(hashtable_t *ht)
 {
