@@ -6,31 +6,6 @@
 */
 #include "secured.h"
 
-int hash(char *key, int len)
-{
-    int res = 3;
-
-    for (int i = 0; key[i] != '\0'; i++) {
-        res = res * key[i];
-        for (int j = 0; key[j] != '\0'; j++)
-            res = res + key[i] + j + i * i + (j * j) + 1;
-    }
-    if (res < 0) {
-        res = res * -1;
-        res = res + 1;
-    }
-    return res;
-}
-
-hashtable_t *new_hashtable(int (*hash)(char *, int), int len)
-{
-    hashtable_t *ht = malloc(sizeof(hashtable_t));
-
-    ht->tab_list = malloc(len * sizeof(node_t *));
-    ht->len = len;
-    return ht;
-}
-
 int ht_insert(hashtable_t *ht, char *key, char *value)
 {
     int index = hash(key, ht->len) % ht->len;
@@ -63,9 +38,4 @@ void ht_dump(hashtable_t *ht)
             current = current->next;
         }
     }
-}
-
-void delete_hashtable(hashtable_t *ht)
-{
-    free(ht);
 }

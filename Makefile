@@ -12,6 +12,7 @@ SRC		=	lib/my_atoi.c 		\
 			lib/my_put_nbr.c 	\
 			lib/my_put_nbr_recursive.c	\
 			secured.c 			\
+			table.c 			\
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -21,15 +22,13 @@ NAME	=	gcc main.c -L. -lhashtable
 
 all		:	$(OBJ)
 			$(LIB)
-
-exe		:
 			$(NAME)
 
 clean 	:
 			rm $(OBJ)
+			rm a.out
 
 fclean 	:	clean
 			rm -f libhashtable.a
-			rm -f a.out
 
-re		:	fclean all exe
+re		:	fclean all
