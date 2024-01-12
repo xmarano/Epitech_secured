@@ -14,7 +14,7 @@ int hash(char *key, int len)
     for (int i = 0; key[i] != '\0'; i++) {
         res = res * key[i];
         for (int j = 0; key[j] != '\0'; j++)
-            res = res + key[i] + j + i * i + (j * j) + 1;
+            res = res + key[i] * j * i * i + (j * j);
     }
     if (res < 0) {
         res = res * -1;
