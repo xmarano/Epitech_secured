@@ -27,8 +27,8 @@ all		:	$(OBJ)
 			$(NAME)
 
 clean 	:
-			rm $(OBJ)
-			rm a.out
+			rm -f $(OBJ)
+			rm -f a.out
 
 fclean 	:	clean
 			rm -f libhashtable.a
