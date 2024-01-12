@@ -23,19 +23,39 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
             current = current->next;
         current->next = new;
     }
-    return 0;
+    return 139;
 }
 
 int ht_delete(hashtable_t *ht, char *key)
 {
+    int index = hash(key, ht->len) % ht->len;
+    node_t *current = ht->tab_list[index];
+    node_t *previous = NULL;
+
+    while (current != NULL && current->hashed != hash(key, ht->len)) {
+        previous = current;
+        current = current->next;
+    }
+    if (current == NULL)
+        return 84;
+    if (previous == NULL)
+        ht->tab_list[index] = current->next;
+    else
+        previous->next = current->next;
     return 0;
 }
 
 char *ht_search(hashtable_t *ht, char *key)
 {
-    return NULL;
-}
+    int index = hash(key, ht->len) % ht->len;
+    node_t *current = ht->tab_list[index];
 
+    while (current != NULL && current->hashed != hash(key, ht->len))
+        current = current->next;
+    if (current == NULL)
+        return NULL;
+    return current->value;
+}
 
 void ht_dump(hashtable_t *ht)
 {
