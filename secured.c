@@ -23,7 +23,7 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
             current = current->next;
         current->next = new;
     }
-    return 139;
+    return 0;
 }
 
 int ht_delete(hashtable_t *ht, char *key)
