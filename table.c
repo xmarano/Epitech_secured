@@ -25,8 +25,11 @@ int hash(char *key, int len)
 
 hashtable_t *new_hashtable(int (*hash)(char *, int), int len)
 {
-    hashtable_t *ht = malloc(sizeof(hashtable_t));
+    hashtable_t *ht = NULL;
 
+    if (len <= 0)
+        return NULL;
+    ht = malloc(sizeof(hashtable_t));
     ht->len = len;
     ht->c_hash = hash;
     ht->tab_list = malloc(len * sizeof(node_t *));
@@ -38,6 +41,8 @@ void delete_hashtable(hashtable_t *ht)
     node_t *current = NULL;
     node_t *temp = current;
 
+    if (ht == NULL || ht->len <= 0)
+        return;
     for (int i = 0; i < ht->len; i++) {
         current = ht->tab_list[i];
         while (current != NULL) {
