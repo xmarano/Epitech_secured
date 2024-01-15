@@ -12,7 +12,7 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     node_t *new = NULL;
     node_t *current = NULL;
 
-    if (ht->len <= 0 || key[0] == '\0' || value[0] == '\0')
+    if (ht->len <= 0 || key == NULL || value == NULL)
         return 84;
     index = ht->c_hash(key, ht->len) % ht->len;
     new = malloc(sizeof(node_t));
