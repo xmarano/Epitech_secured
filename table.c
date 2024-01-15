@@ -27,8 +27,8 @@ hashtable_t *new_hashtable(int (*hash)(char *, int), int len)
 {
     hashtable_t *ht = malloc(sizeof(hashtable_t));
 
-    ht->tab_list = malloc(len * sizeof(node_t *));
     ht->len = len;
+    ht->tab_list = malloc(len * sizeof(node_t *));
     return ht;
 }
 

@@ -8,10 +8,14 @@
 
 int ht_insert(hashtable_t *ht, char *key, char *value)
 {
-    int index = hash(key, ht->len) % ht->len;
-    node_t *new = malloc(sizeof(node_t));
+    int index = 0;
+    node_t *new = NULL;
     node_t *current = NULL;
 
+    if (ht->len <= 0)
+        return 84;
+    index = hash(key, ht->len) % ht->len;
+    new = malloc(sizeof(node_t));
     new->hashed = hash(key, ht->len);
     new->value = my_strdup(value);
     new->next = NULL;
@@ -47,9 +51,13 @@ int ht_delete(hashtable_t *ht, char *key)
 
 char *ht_search(hashtable_t *ht, char *key)
 {
-    int index = hash(key, ht->len) % ht->len;
-    node_t *current = ht->tab_list[index];
+    int index = 0;
+    node_t *current = NULL;
 
+    if (key == NULL || ht == NULL || ht->len <= 0)
+        return NULL;
+    index = hash(key, ht->len) % ht->len;
+    current = ht->tab_list[index];
     while (current != NULL && current->hashed != hash(key, ht->len))
         current = current->next;
     if (current == NULL)
