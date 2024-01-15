@@ -14,9 +14,9 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
 
     if (ht->len <= 0 || key[0] == '\0' || value[0] == '\0')
         return 84;
-    index = hash(key, ht->len) % ht->len;
+    index = ht->c_hash(key, ht->len) % ht->len;
     new = malloc(sizeof(node_t));
-    new->hashed = hash(key, ht->len);
+    new->hashed = ht->c_hash(key, ht->len);
     new->value = my_strdup(value);
     new->next = NULL;
     if (ht->tab_list[index] == NULL) {
@@ -32,11 +32,11 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
 
 int ht_delete(hashtable_t *ht, char *key)
 {
-    int index = hash(key, ht->len) % ht->len;
+    int index = ht->c_hash(key, ht->len) % ht->len;
     node_t *current = ht->tab_list[index];
     node_t *previous = NULL;
 
-    while (current != NULL && current->hashed != hash(key, ht->len)) {
+    while (current != NULL && current->hashed != ht->c_hash(key, ht->len)) {
         previous = current;
         current = current->next;
     }
@@ -56,9 +56,9 @@ char *ht_search(hashtable_t *ht, char *key)
 
     if (key == NULL || ht == NULL || ht->len <= 0)
         return NULL;
-    index = hash(key, ht->len) % ht->len;
+    index = ht->c_hash(key, ht->len) % ht->len;
     current = ht->tab_list[index];
-    while (current != NULL && current->hashed != hash(key, ht->len))
+    while (current != NULL && current->hashed != ht->c_hash(key, ht->len))
         current = current->next;
     if (current == NULL)
         return NULL;

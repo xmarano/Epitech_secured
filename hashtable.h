@@ -8,6 +8,7 @@
 #ifndef HASHTABLE_H
     #define HASHTABLE_H
 
+typedef int (*hash_f)(char *, int);
 typedef struct node {
     int hashed;
     char *value;
@@ -15,6 +16,7 @@ typedef struct node {
 } node_t;
 
 typedef struct {
+    hash_f c_hash;
     int len;
     node_t **tab_list;
 } hashtable_t;
