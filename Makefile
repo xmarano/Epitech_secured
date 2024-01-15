@@ -24,6 +24,8 @@ NAME	=	gcc main.c -L. -lhashtable
 
 all		:	$(OBJ)
 			$(LIB)
+
+loc		: 	all
 			$(NAME)
 
 clean 	:
