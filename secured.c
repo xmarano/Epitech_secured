@@ -12,7 +12,7 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     node_t *new = NULL;
     node_t *current = NULL;
 
-    if (ht->len <= 0 || key == NULL || value == NULL)
+    if (ht->len <= 0 || key == NULL || value == NULL || ht == NULL)
         return 84;
     index = ht->c_hash(key, ht->len) % ht->len;
     new = malloc(sizeof(node_t));
@@ -32,10 +32,14 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
 
 int ht_delete(hashtable_t *ht, char *key)
 {
-    int index = ht->c_hash(key, ht->len) % ht->len;
-    node_t *current = ht->tab_list[index];
+    int index = 0;
+    node_t *current = NULL;
     node_t *previous = NULL;
 
+    if (ht == NULL || key == NULL)
+        return 84;
+    index = ht->c_hash(key, ht->len) % ht->len;
+    current = ht->tab_list[index];
     while (current != NULL && current->hashed != ht->c_hash(key, ht->len)) {
         previous = current;
         current = current->next;
