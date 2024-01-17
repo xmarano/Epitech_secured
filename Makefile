@@ -7,6 +7,7 @@
 
 SRC		=	lib/my_atoi.c 		\
 			lib/my_strdup.c 	\
+			lib/my_strcmp.c 	\
 			lib/my_strlen.c 	\
 			lib/my_putstr.c 	\
 			lib/my_printf.c		\

@@ -15,7 +15,7 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
 
     if (ht == NULL || ht->len <= 0 || key == NULL || value == NULL)
         return 84;
-    if (str != "error")
+    if (my_strcmp(str, "error"))
         ht_delete(ht, key);
     index = ht->c_hash(key, ht->len) % ht->len;
     new = malloc(sizeof(node_t));
@@ -56,7 +56,8 @@ char *ht_search(hashtable_t *ht, char *key)
     node_t *current = NULL;
     char *error = "error";
 
-    if (key == NULL || ht == NULL || ht->len <= 0)
+    if (key == NULL || my_strcmp(key, "Not_found") == 0 ||
+        ht == NULL || ht->len <= 0)
         return NULL;
     index = ht->c_hash(key, ht->len) % ht->len;
     current = ht->tab_list[index];
