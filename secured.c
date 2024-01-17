@@ -11,22 +11,19 @@ int ht_insert(hashtable_t *ht, char *key, char *value)
     int index = 0;
     node_t *new = NULL;
     node_t *current = NULL;
+    char *str = ht_search(ht, key);
 
     if (ht == NULL || ht->len <= 0 || key == NULL || value == NULL)
         return 84;
+    if (str != "error")
+        ht_delete(ht, key);
     index = ht->c_hash(key, ht->len) % ht->len;
     new = malloc(sizeof(node_t));
     new->hashed = ht->c_hash(key, ht->len);
     new->value = my_strdup(value);
     new->next = NULL;
-    if (ht->tab_list[index] == NULL) {
-        ht->tab_list[index] = new;
-    } else {
-        current = ht->tab_list[index];
-        while (current->next != NULL)
-            current = current->next;
-        current->next = new;
-    }
+    new->next = ht->tab_list[index];
+    ht->tab_list[index] = new;
     return 0;
 }
 
@@ -57,6 +54,7 @@ char *ht_search(hashtable_t *ht, char *key)
 {
     int index = 0;
     node_t *current = NULL;
+    char *error = "error";
 
     if (key == NULL || ht == NULL || ht->len <= 0)
         return NULL;
@@ -65,7 +63,7 @@ char *ht_search(hashtable_t *ht, char *key)
     while (current != NULL && current->hashed != ht->c_hash(key, ht->len))
         current = current->next;
     if (current == NULL)
-        return NULL;
+        return error;
     return current->value;
 }
 
