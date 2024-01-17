@@ -54,10 +54,9 @@ char *ht_search(hashtable_t *ht, char *key)
 {
     int index = 0;
     node_t *current = NULL;
-    char *error = "error";
+    char *error = "(null)";
 
-    if (key == NULL || my_strcmp(key, "Not_found") == 0 ||
-        ht == NULL || ht->len <= 0)
+    if (key == NULL || ht == NULL || ht->len <= 0)
         return NULL;
     index = ht->c_hash(key, ht->len) % ht->len;
     current = ht->tab_list[index];
