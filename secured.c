@@ -54,6 +54,7 @@ char *ht_search(hashtable_t *ht, char *key)
 {
     int index = 0;
     node_t *current = NULL;
+    char *error = "(null)";
 
     if (key == NULL || ht == NULL || ht->len <= 0)
         return NULL;
@@ -62,7 +63,7 @@ char *ht_search(hashtable_t *ht, char *key)
     while (current != NULL && current->hashed != ht->c_hash(key, ht->len))
         current = current->next;
     if (current == NULL)
-        return NULL;
+        return error;
     return current->value;
 }
 
